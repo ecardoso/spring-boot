@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="default">
+    
+	<div layout:fragment="title"><output th:text="${acao}"/></div>
+		
+	<div layout:fragment="content">		
+		<form id="form" class="form-inline" method="POST" th:object="${despesa}" th:action="@{/despesas}" style="margin: 20px 0">
+			<div class="form-group">
+				<table>
+					<tr>
+						<td>Id: </td>
+						<td><input type="text" class="form-control"	title="Id" th:field="*{id}" readonly="readonly" /></td>
+					</tr>
+					<tr>	
+						<td>Categoria: </td>
+						<td>
+							<select class="form-control" th:field="*{categoria}">
+								<option th:each="country : ${categorias}" th:value="${country.id}" th:text="${country.descricao}" />
+							</select>
+              			</td>
+					</tr>
+					<tr>
+						<td>Descrição: </td>
+						<td><input type="text" class="form-control"	title="Descrição" th:field="*{descricao}"/></td>
+					</tr>
+					<tr>
+						<td>Observação: </td>
+						<td><input type="text" class="form-control"	title="Observação" th:field="*{observacao}"/></td>
+					</tr>
+					<tr>
+						<td>Parcela: </td>
+						<td><input type="text" class="form-control"	title="Parcela" th:field="*{parcela}"/></td>
+					</tr>
+					<tr>
+						<td>Data: </td>
+						<td><input type="date" class="form-control"	title="Data" th:field="*{data}"/></td>
+					</tr>
+					<tr>
+						<td>Valor: </td>
+						<td><input id="valor" type="text" class="form-control"	title="Valor" th:field="*{valor}" placeholder="0,00" onKeyPress="formataMoeda(form.valor);"/></td>
+					</tr>					
+					<tr>
+						<td><button type="submit" class="btn btn-primary">ok</button></td>
+					</tr>
+				</table>
+			</div>
+			
+
+
+		</form>			
+	</div>    
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="default">
+    
+	<div layout:fragment="title"><output th:text="${acao}"/></div>
+		
+	<div layout:fragment="content">		
+		<form class="form-inline" method="POST" th:object="${categoria}" th:action="@{/categorias}" style="margin: 20px 0">
+			<div class="form-group">
+				<table>
+					<tr>
+						<td>Id: </td>
+						<td><input type="text" class="form-control"	title="Id" th:field="*{id}" readonly="readonly" /></td>
+					</tr>
+					<tr>
+						<td>Descrição: </td>
+						<td><input type="text" class="form-control"	title="Descrição" th:field="*{descricao}"/></td>
+					</tr>				
+					<tr>
+						<td><button type="submit" class="btn btn-primary">ok</button></td>
+					</tr>
+				</table>
+			</div>
+		</form>			
+	</div>    
+</html>

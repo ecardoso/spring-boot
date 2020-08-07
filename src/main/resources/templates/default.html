@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width" />
+		<title>Controle despesas</title>
+		<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+		<link th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}" rel="stylesheet"/>
+    </head>
+    
+    <body>    	
+    	<div class="panel panel-default" style="margin-top: 10px; margin-left:10px; width: 70%; height: 750px;">    		
+			<div style="margin-top:10px; float: left; width: 15%;">
+				<ul id="menu">
+					<li><a href="/categorias/listar">Pesquisar Categoria</a></li>
+					<li><a href="/categorias/novo">Cadastrar Categoria</a></li>
+					<li><a href="/despesas/listar">Pesquisar Despesa</a></li>
+					<li><a href="/despesas/novo">Cadastrar Despesa</a></li>
+				</ul>
+			</div>
+			
+			<div style="margin-left: 15%;">
+				<table>
+					<tr th:if="${mensagem != null}">
+						<td bgcolor="#87CEFA"><h1 class="panel-title"><output th:text="${mensagem}"/></h1></td>
+					</tr>
+					<tr th:if="${erro != null}">
+						<td bgcolor="#FF4040"><h1 class="panel-title"><output th:text="${erro}"/></h1></td>
+					</tr>
+				</table>
+			</div>
+			
+			<div class="panel-heading" style="margin-left: 15%;">
+	    		<h1 class="panel-title"><div layout:fragment="title" /></h1>	    		
+			</div>
+			
+		    <div class="panel-body" style="margin-left: 15%;">		    	
+		    	<div layout:fragment="content" />
+			</div>			
+		</div>
+		        	
+    	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+		<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+		
+		<script>
+			function formataMoeda(values) {
+			      v = values.value;
+			      v = v.replace(/\D/g, "") //permite digitar apenas números 
+			      v = v.replace(/[0-8]{11}/, "inválido") //limita pra máximo 99.999.999,99 
+			      v = v.replace(/(\d{1})(\d{7})$/, "$1.$2") //coloca ponto antes dos últimos 7 digitos 
+			      v = v.replace(/(\d{1})(\d{4})$/, "$1.$2") //coloca ponto antes dos últimos 4 digitos 
+			      v = v.replace(/(\d{1})(\d{0,1})$/, "$1,$2") //coloca virgula antes dos últimos 2 digitos 
+			      values.value = v;
+			  }
+			  
+		</script>
+    </body>
+</html>

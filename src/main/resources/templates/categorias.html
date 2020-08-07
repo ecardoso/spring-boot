@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="default">
+    
+	<div layout:fragment="title">Lista de categoria</div>
+		
+	<div layout:fragment="content">
+		<table class="table">
+			<thead>							
+				<tr><th>Id</th>
+					<th colspan="2">Descrição</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="categoria : ${categorias}">
+					<td th:text="${categoria.id}"></td>
+					<td th:text="${categoria.descricao}"></td>
+					<td>
+						<div class="btn-group pull-right">
+                             <a class="btn btn-sm btn-primary" th:href="@{'/categorias/editar'(id=${categoria.id})}">Editar</a>
+                             <a class="delete btn btn-sm btn-danger" th:href="@{'/categorias/remover'(id=${categoria.id})}">Excluir</a>
+                        </div>
+					</td>
+				</tr>
+			</tbody>
+		</table>		
+	</div>    
+</html>
